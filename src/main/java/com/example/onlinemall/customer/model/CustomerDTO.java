@@ -20,9 +20,5 @@ public class CustomerDTO {
 
     private String customerId;
     private String password;
-    private String customerName;
-    private int age;
-    private String rating;
-    private String occupation;
-    private int reserves;
+
 }

@@ -6,7 +6,6 @@ import com.example.onlinemall.customer.service.CustomerService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -16,19 +15,14 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/login")
-
-    public String login(Model model, CustomerDTO customerDTO,
-        HttpSession session) {
+    public String login(CustomerDTO customerDTO, HttpSession session) {
 
         Customer customer = customerService.login(customerDTO.getCustomerId(),
             customerDTO.getPassword());
 
-        model.addAttribute("customer", customer);
-//        if (customer != null) {
-////            session.setAttribute("customer", customer);
-//            model.addAttribute("user", user);
-//            return "redirect:/products";
-//        }
+        if (customer != null) {
+            session.setAttribute("customer", customer);
+        }
         return "redirect:/products";
     }
 //

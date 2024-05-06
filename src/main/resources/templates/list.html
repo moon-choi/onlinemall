@@ -16,9 +16,8 @@
 <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
   <h2>Online Shopping</h2>
 </div>
-
 <div class="login">
-  <div th:unless="${customer}">
+  <div th:unless="${session.customer}">
     <h4>Login</h4>
     <form class="form-inline" method="post" th:action="@{/login}">
       <label for="customerId">ID:</label>
@@ -27,15 +26,16 @@
       <label for="password">Password:</label>
       <input class="form-control" id="password" name="password" placeholder="Enter Password"
              type="password">
-      <button class="btn btn-primary" type="submit">로그인</button>
+      <button class="btn btn-primary" type="submit">LogIn</button>
     </form>
   </div>
 
-  <div th:if="${customer}">
-    <form class="form-inline" method="post" th:action="@{/logout}">
-      <label th:text=" 'Welcome, ' ${customer.customerName}"></label>
-      <p th:text="${customer.reserves}"><span>Rewards: </span></p>
-      <button class="btn btn-primary btn-sm" type="submit">로그아웃</button>
+  <div th:if="${session.customer}">
+    <form class="form" method="post" th:action="@{/logout}">
+      <p th:text="'Welcome, ' + ${session.customer.customerName}"></p>
+      <p th:text="'Rewards: ' + ${session.customer.reserves}"></p>
+
+      <button class="btn btn-primary btn-sm" type="submit">LogOut</button>
     </form>
   </div>
 

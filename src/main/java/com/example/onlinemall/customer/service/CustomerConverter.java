@@ -11,11 +11,6 @@ public class CustomerConverter {
         return CustomerDTO.builder()
             .customerId(customer.getCustomerId())
             .password(customer.getPassword())
-            .customerName(customer.getCustomerName())
-            .age(customer.getAge())
-            .rating(customer.getRating())
-            .occupation(customer.getOccupation())
-            .reserves(customer.getReserves())
             .build();
     }
 
