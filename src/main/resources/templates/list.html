@@ -15,6 +15,7 @@
 <body>
 <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
   <h2>Online Shopping</h2>
+
 </div>
 <div class="login">
   <div th:unless="${session.customer}">
@@ -31,10 +32,13 @@
   </div>
 
   <div th:if="${session.customer}">
+    <a th:href="@{/my-cart}">My cart</a>
     <form class="form" method="post" th:action="@{/logout}">
       <p th:text="'Welcome, ' + ${session.customer.customerName}"></p>
       <p th:text="'Rewards: ' + ${session.customer.reserves}"></p>
-
+      <!--      <p th:text="'ID: ' + ${session.customer.customerId}"></p>-->
+      <input id="customerFormId" name="customerId" th:value="${session.customer.customerId}"
+             type="hidden"/>
       <button class="btn btn-primary btn-sm" type="submit">LogOut</button>
     </form>
   </div>
@@ -59,7 +63,18 @@
         <td th:text="${p.inventory}"></td>
         <td th:text="${p.price}"></td>
         <td th:text="${p.manufacturer}"></td>
-        <td>Add to cart</td>
+        <td>
+          <form method="post" th:action="@{/add-to-cart}" th:id="'orderForm' + ${p.productNumber}">
+            <!--            <input id="customerFormId" name="customerId" th:value="${session.customer.customerId}"-->
+            <!--                   type="hidden"/>-->
+            <input id="productFormId" name="productNumber" th:value="${p.productNumber}"
+                   type="hidden"/>
+            <input name="quantity" type="hidden" value="1"/>
+            <button onclick="addToCart(this)" th:value="${p.productNumber}" type="button">
+              Add to cart
+            </button>
+          </form>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -68,5 +83,12 @@
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
     2024 Online Shopping Cart_3조_최문영
   </div>
+
+
+</div>
+<script crossorigin="anonymous"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/list.js"></script>
 </body>
 </html>

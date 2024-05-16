@@ -25,29 +25,10 @@ public class CustomerController {
         }
         return "redirect:/products";
     }
-//
-////@PostMapping("/logout")
-////public String logout(HttpSession session) {
-////    session.invalidate();
-////    return "redirect:/";
-////}
-
-//    @PostMapping("/login")
-//    public String login(String customerId, String password, HttpSession session, Model model) {
-//        Customer customer = customerService.login(customerId, password);
-//        if (customer != null) {
-//            session.setAttribute("customerId", customerId);
-//            return "redirect:/products";
-//        } else {
-//            model.addAttribute("error", "Invalid ID or password");
-//            return "redirect:/products";
-//        }
-//    }
 
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/products";
     }
-
 }

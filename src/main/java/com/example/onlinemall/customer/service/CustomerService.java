@@ -31,4 +31,8 @@ public class CustomerService {
     public Customer login(String customerId, String password) {
         return customerRepository.findByCustomerIdAndPassword(customerId, password);
     }
+
+    public Customer findByCustomerId(String customerId) {
+        return customerRepository.findById(customerId).get();
+    }
 }
